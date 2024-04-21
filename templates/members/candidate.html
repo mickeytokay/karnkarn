@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Candidates{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row ">
+        <h2 class="mt-5 mb-5">Registered Candidates <b>{{candidate_count}}</b></h2>
+    </div>
+</div>
+
+<div class="row mb-5">
+	
+    <div class="col-12 mt-2 shadow">
+		<table class="table table-image">
+		  <thead>
+		    <tr>
+			  <th scope="col">Image</th>
+		      <th scope="col">Name</th>
+		      <th scope="col"> Position</th>
+		      <th scope="col">Block</th>
+		      <th scope="col">Party</th>
+		      <th scope="col">Nationality</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+			{% for candidate in candidates %}
+		    <tr>
+				<td class="w-25">
+					<img class="w-25" src={{candidate.photo.url}}>
+				</td>
+		      <td >
+                {{candidate.candidate}}
+		      </td>
+		      <td>{{candidate.positions}}</td>
+		      <td>{{candidate.block}}</td>
+		      <td>{{candidate.party}}</td>
+		      <td>{{candidate.nationality}}</td>
+		    </tr>
+		    {% endfor %}
+		  </tbody>
+		</table>   
+    </div>
+  </div>
+
+{% endblock content %}

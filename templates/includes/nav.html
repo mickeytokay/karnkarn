@@ -1,0 +1,56 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="container">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="navbar-brand" href="{% url 'members' %}">Karn-Karn Town</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'members' %}">Home <span ></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'candidates' %}">Candidates</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            Blocks
+          </a>
+          <div class="dropdown-menu">
+            {% for block in links %}
+            <a class="dropdown-item" href="{{block.get_url}}">{{block.block}}</a>
+            {% endfor %}
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'chairman' %}">Results</a>
+        </li>
+      </ul>
+    
+      <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="GET">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
+    </div>
+  </div>
+</nav>
+
+
+
+  
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center breaking-news bg-white">
+                <div class="d-flex flex-row flex-grow-1 flex-fill justify-content-center bg-danger py-2 text-white px-1 news"><span class="d-flex align-items-center">&nbsp;News</span></div>
+                <marquee class="news-scroll" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"> <a href="#">Karn-Karn's Town Community Special General Elections 2024 </a>  
+                </marquee>
+            </div>
+        </div>
+      </div>

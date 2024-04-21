@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Results{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row ">
+        <h2 class="mt-5 mb-5">Voting Results for General Chairman</b></h2>
+    </div>
+</div>
+
+<div class="container mb-5">
+      <div class="row ">
+        <div class="col-3">
+            <ul class="list-group shadow">
+                <li class="list-group-item active" aria-current="true">Categories</li>
+                
+                <li class="list-group-item"><a href="{% url 'chairman' %}">General Chairman</a></li>
+                <li class="list-group-item"><a href="{% url 'secretery' %}">Secretery General</a></li>
+                <li class="list-group-item"><a href="{% url 'financial' %}">Financial Secretery</a></li>
+                <li class="list-group-item"><a href="{% url 'women' %}">Women Chair</a></li>
+                <li class="list-group-item"><a href="{% url 'youth' %}">Youth Chair</a></li>
+                
+                
+              </ul>
+        </div>
+        <div class="col-9 shadow">
+          
+          <div>
+            <canvas id="myChart"></canvas>
+          </div>
+
+          <script>
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+              type: 'bar',
+              data: {
+                
+                labels: [{% for data in data %}'{{data.candidate}}',{% endfor %}],
+                datasets: [{
+                  label: '# of Votes',
+                  data: [{% for data in data %}'{{data.votes}}',{% endfor %}],
+                  borderWidth: 1
+                }]
+                
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          </script>
+          
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row ">
+            <h2 class="mt-5">Leader Board</b></h2>
+        </div>
+      </div>
+      
+      <div class="row mt-5">
+	
+        <div class="col-12 mt-2 shadow">
+        <table class="table table-image">
+          <thead>
+            <tr>
+              <th scope="col">Category</th>
+              <th scope="col"> Name</th>
+              <th scope="col"> Party</th>
+              <th scope="col">Votes</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for data in data %}
+            <tr>
+              <td>{{data.category}}</td>
+              <td>{{data.candidate}}</td>
+              <td>{{data.party}}</td>
+              <td>{{data.votes}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>   
+        </div>
+      </div>
+
+</div>
+
+{% endblock content %}
